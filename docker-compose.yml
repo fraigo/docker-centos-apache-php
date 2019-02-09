@@ -1,0 +1,35 @@
+version: '2'
+services:
+  myapp:
+    image: 'php-apache'
+    ports:
+      - '8080:8080'
+    volumes:
+      - './www/:/var/www/html'
+      - './config-files:/root/config'
+    depends_on:
+      - mariadb
+    links:
+      - mariadb:db
+    environment:
+      - MYSQL_HOST=db
+  mariadb:
+    image: 'mariadb:latest'
+    volumes:
+      - './schema:/config'
+    environment:
+      - MYSQL_ROOT_PASSWORD=mysqlroot
+      - MYSQL_DATABASE=phpdev
+      - MYSQL_USER=phpdev
+      - MYSQL_PASSWORD=phpdev
+  myadmin:
+     image: "phpmyadmin/phpmyadmin"
+     ports:
+       - 8082:80
+     links:
+       - mariadb:db
+     environment:
+       - PMA_HOST=db
+       - PMA_USER=phpdev
+       - PMA_PASSWORD=phpdev
+       - PMA_ARBITRARY=1
