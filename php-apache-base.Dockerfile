@@ -1,3 +1,5 @@
+# Based on https://github.com/sclorg/s2i-php-container/blob/master/7.1/Dockerfile
+
 FROM centos/httpd-24-centos7
 
 
