@@ -22,14 +22,13 @@ USER root
 RUN export
 
 # Install Apache httpd and PHP
-RUN yum install -y centos-release-scl && \
-    INSTALL_PKGS="rh-php71 rh-php71-php rh-php71-php-mysqlnd rh-php71-php-pgsql rh-php71-php-bcmath \
+RUN yum install -y centos-release-scl 
+RUN INSTALL_PKGS="rh-php71 rh-php71-php rh-php71-php-mysqlnd rh-php71-php-pgsql rh-php71-php-bcmath \
                   rh-php71-php-gd rh-php71-php-intl rh-php71-php-ldap rh-php71-php-mbstring rh-php71-php-pdo \
                   rh-php71-php-process rh-php71-php-soap rh-php71-php-opcache rh-php71-php-xml \
                   rh-php71-php-gmp rh-php71-php-pecl-apcu httpd24-mod_ssl" && \
-    yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS --nogpgcheck && \
-    rpm -V $INSTALL_PKGS && \
-    yum clean all -y
+    yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS --nogpgcheck
+RUN yum clean all -y
 
 ENV PHP_CONTAINER_SCRIPTS_PATH=/usr/share/container-scripts/php/ \
     APP_DATA=${APP_ROOT}/src \
@@ -46,6 +45,6 @@ ENV PHP_CONTAINER_SCRIPTS_PATH=/usr/share/container-scripts/php/ \
     SCL_ENABLED=rh-php71
 
 # Reset permissions of filesystem to default values
-RUN /usr/libexec/container-setup && rpm-file-permissions
+RUN rpm-file-permissions
 
 RUN echo "Running on http://localhost:8080"
