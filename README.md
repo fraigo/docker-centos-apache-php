@@ -16,3 +16,8 @@ Create Image with extra components, custom config and web application code
 Run image
 
 `docker run -p 8080:8080 php-apache`
+
+Open local web server
+
+`http://localhost:8080/`
+
