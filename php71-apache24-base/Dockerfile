@@ -15,7 +15,7 @@ LABEL summary="${SUMMARY}" \
       description="${DESCRIPTION}" \
       name="centos7-${NAME}-${PHP_VER_SHORT}" \
       version="${PHP_VERSION}" \
-      help="For more information visit https://hub.docker.com/r/centos/httpd-24-centos7" \
+      help="For more information visit https://hub.docker.com/r/franciscoigor/php71-apache24-centos7" \
       usage="docker image build -t php-apache ./" \
       maintainer="Francisco Igor <franciscoigor@gmail.com>"
 
