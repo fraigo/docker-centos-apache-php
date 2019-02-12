@@ -1,4 +1,4 @@
-FROM php-apache-base
+FROM php71-apache24-base
 
 # Copy extra files to the image.
 COPY ./www /var/www/html
