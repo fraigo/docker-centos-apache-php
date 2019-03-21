@@ -62,6 +62,7 @@
         }
 
         header("Content-type: text/json");
+	     $output["post"]=$_POST;
         $output["files"]=$upload_files;
         $output["errors"]=$upload_errors;
         $output["messages"]=$upload_messages;
