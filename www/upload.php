@@ -1,16 +1,29 @@
 <?php
    /* File upload example */
+   $FIELDNAME=$_GET["fieldname"]?:"images";
+   $MULTIPLE=$_GET["multiple"]==1;
 
-   if(isset($_FILES['images'])){
+   if(isset($_FILES[$FIELDNAME])){
         $upload_errors=[];
         $upload_messages=[];
         $upload_files=[];
-        foreach($_FILES["images"]["name"] as $index => $file_name ){
+
+        $FILES = $_FILES[$FIELDNAME];
+
+        if (!is_array($_FILES[$FIELDNAME]["name"])){
+         $FILES=[];  
+         $FILES['name'][0]=$_FILES[$FIELDNAME]['name'];
+         $FILES['size'][0]=$_FILES[$FIELDNAME]['size'];
+         $FILES['tmp_name'][0]=$_FILES[$FIELDNAME]['tmp_name'];
+         $FILES['type'][0]=$_FILES[$FIELDNAME]['type'];
+        };
+
+        foreach($FILES["name"] as $index => $file_name ){
             $errors= array();
             $messages = array();
-            $file_size =$_FILES['images']['size'][$index];
-            $file_tmp =$_FILES['images']['tmp_name'][$index];
-            $file_type=$_FILES['images']['type'][$index];
+            $file_size =$FILES['size'][$index];
+            $file_tmp =$FILES['tmp_name'][$index];
+            $file_type=$FILES['type'][$index];
             $file_ext=strtolower(end(explode('.',$file_name)));
             $file=["name"=>$file_name,"size"=>$file_size*1,"type"=>$file_type];
             
@@ -52,7 +65,7 @@
         $output["files"]=$upload_files;
         $output["errors"]=$upload_errors;
         $output["messages"]=$upload_messages;
-        echo json_encode($output, JSON_PRETTY_PRINT);
+        echo json_encode($output);
         die();
 
       
@@ -62,9 +75,8 @@
    <body>
       
       <form action="" method="POST" enctype="multipart/form-data">
-         <input type="file" name="images[]" />
+         <input type="file" name="<?php echo $FIELDNAME ?><?php if($MULTIPLE) echo "[]" ?>" <?php if($MULTIPLE) echo "multiple" ?>/>
          <input type="submit"/>
       </form>
-      
    </body>
 </html>
