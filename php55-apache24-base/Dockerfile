@@ -6,7 +6,7 @@ ENV PHP_VERSION=5.5 \
     PHP_VER_SHORT=55 \
     NAME=php
 
-ENV PATH=$PATH:/opt/rh/php${PHP_VER_SHORT}:/root/usr/bin
+ENV PATH=$PATH:/opt/rh/php${PHP_VER_SHORT}/root/usr/bin
 
 ENV SUMMARY="Platform for building and running PHP $PHP_VERSION applications" \
     DESCRIPTION="Centos7/Apache2.4/PHP$PHP_VERSION server"
