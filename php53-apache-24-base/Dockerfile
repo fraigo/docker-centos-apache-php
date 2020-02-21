@@ -1,4 +1,5 @@
-# Based on https://github.com/sclorg/s2i-php-container/blob/master/7.1/Dockerfile
+# Based on Apache2.4/Centos6 Dockerfile
+# https://github.com/CentOS/CentOS-Dockerfiles/blob/master/httpd/centos6/Dockerfile
 FROM centos:centos6
 
 RUN yum -y update; yum clean all
