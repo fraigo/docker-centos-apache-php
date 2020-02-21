@@ -1,6 +1,6 @@
 # docker-centos-apache-php
 
-Create Docker images for Web server based on Centos7, Apache 2.4, PHP 7.1
+Create Docker images for Web server based on Centos, Apache and PHP 
 
 
 ## Centos7, Apache 2.4, PHP 7.1
